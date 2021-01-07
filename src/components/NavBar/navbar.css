@@ -14,7 +14,12 @@
     display: flex;
     justify-content: space-around;
 }
-
+.carrito{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 p{
     color: white;
     font-family: fantasy;
