@@ -1,0 +1,26 @@
+button {
+    margin: 0.1%;
+}
+
+p{
+    color: black
+}
+
+.contador{
+    display: flex;
+    align-items: center ;
+    justify-content: center ;
+}
+
+.btn{
+    background-color: black;
+    color: blueviolet;
+    border: 1px solid blueviolet;
+    border-radius: 2px;
+    display:inline-block;
+    width:30px;
+    height: 30px;
+    position: relative;
+    margin-left: 20px ;
+    margin-right: 20px;
+}
