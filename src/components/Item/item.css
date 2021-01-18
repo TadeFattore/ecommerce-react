@@ -1,3 +1,9 @@
-.item{
-    color: brown;
+.titulo{
+    color: black;
+    border: solid black;  
+}
+
+.descripcion{
+    background-color: black;
+    color:  rgb(255, 0, 191);
 }

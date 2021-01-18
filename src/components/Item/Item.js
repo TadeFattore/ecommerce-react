@@ -1,11 +1,12 @@
 import React from 'react'
 import './item.css'
 
-const Item = () => {
+const Item = ({item}) => {
 
     return (
         <div className='item'>
-            <button>Click Me!</button>
+            <div className="titulo">{item.title}</div> <div className='descripcion'>{item.description}</div>
+            <br></br>
         </div>
 
     )
