@@ -5,7 +5,7 @@ const Item = ({item}) => {
 
     return (
         <div className='item'>
-            <div className="titulo">{item.title}</div> <div className='descripcion'>{item.description}</div>
+            <div className="titulo"><a href='#'>{item.title}</a></div> <div className='descripcion'>{item.description}</div>
             <br></br>
         </div>
 

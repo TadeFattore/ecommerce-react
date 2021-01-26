@@ -1,0 +1,7 @@
+.containeer{
+    display: flex;
+    align-items: center;
+    margin: 30px 30px 30px 30px;
+    height: 10em;
+    justify-content: center;
+}
