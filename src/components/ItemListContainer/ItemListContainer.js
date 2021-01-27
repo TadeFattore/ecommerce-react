@@ -66,6 +66,7 @@ const ItemListContainer = ({ initial, stock }) => {
   return (
     <>
     <div className="container">
+      {products?.map}
       <ItemCount initial={sub} stock={add} onAdd="" count={count} />
       <ItemList items = {products}/>
       </div>
