@@ -2,6 +2,8 @@ import React from 'react'
 import Item from '../Item/Item'
 
 export const ItemList = ({items}) => {
+
+
     
     return (
         <>
@@ -9,11 +11,9 @@ export const ItemList = ({items}) => {
             PRODUCTOS
         </div>
         <ul>
-        {items && items.map(e => <Item key={e.id} item={e}/>)}
+        {items && items.map(item => <Item key={item.id} item={item}/>)}
         </ul>
         </>
 
     )
 };
-
-export default ItemList;

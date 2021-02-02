@@ -1,32 +1,29 @@
-import React, {useEffect} from 'react'
-import {useParams, UseParams} from 'react-router-dom'
+import React from 'react'
+import ItemCountContainer from '../ItemCountContainer/ItemCountContainer'
 import './itemdetail.css'
 
-const ItemDetail = ({items}) => {
+export default function ItemDetail({getItem, count}) {
 
-    const {itemId} = useParams()
+    
+    function agregandoCarrito(){
+        console.log(`agregaste ${count} al carrito`)
+    }
 
-    useEffect(()=>{
-        console.log("itemId cambio a:", itemId)
-    }, [itemId])
 
+    console.log(getItem)
     return (
-        <div className='containeer'>
-            {items && items.map((item) =>{
-                return <>
-                    <div  className="foto"><img className="fotoBurga" src={item.pictureUrl}></img></div>
-                    <div className="details">
-                        <div className="titulo"><a href='#'>{item.title}</a></div>
-                        <div className="precio">{item.price}</div>
-                        <div className='descripcion'>{item.description}</div>
-                    </div>
-                </>
-                    } 
-                )
-            }
+        <div className='probando'>
+            <div className="contender">
+                <div  className="foto">
+                    <img className="fotoBurga" src={getItem && getItem.pictureUrl}></img>
+                </div>
+                <div className="details">
+                    <div className="titulo"><a href='#'>{getItem && getItem.title}</a></div>
+                    <div className="precio">$ {getItem && getItem.price}</div>
+                    <div className='descripcion'>{getItem && getItem.description}</div>
+                </div>
+            </div>
+            <ItemCountContainer initial={1} stock={5} count={count} agregando={agregandoCarrito}/>
         </div>
-
     )
-}
-
-export default ItemDetail;
+}   

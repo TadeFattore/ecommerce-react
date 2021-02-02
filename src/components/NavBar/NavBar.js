@@ -14,8 +14,15 @@ export const NavBar = () => {
                 </Link>
             </div>
             <div className='nav'>
-                <p><a href="#">INICIO</a></p>
-                <Link to={'/categories'}><p><a href="#">CATEGORIAS</a></p></Link>
+                <Link to={'/'}>
+                    <p><a href="#">INICIO</a></p>
+                </Link>
+                <Link to={`/category/1`}>
+                    <p><a href="#"> CATEGORIA 1</a></p>
+                </Link>
+                <Link to={`/category/2`}>
+                    <p><a href="#"> CATEGORIA 2</a></p>
+                </Link>
             </div>
             <div className='carrito'>
                 <CartWidget/>

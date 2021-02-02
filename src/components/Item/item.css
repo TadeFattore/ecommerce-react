@@ -7,3 +7,9 @@
     background-color: black;
     color:  rgb(255, 0, 191);
 }
+
+.item{
+    display: inline-block;
+    border: black solid;
+
+}

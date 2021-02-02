@@ -1,63 +1,50 @@
 import React, { useState, useEffect }  from "react";
-import ItemList from '../ItemList/ItemList'
-import ItemCount from "../ItemCount/ItemCount"
+import {ItemList} from '../ItemList/ItemList'
 import './itemlistcontainer.css'
 
-const items = [
+const products = [
   { 
-    id: 123456,
+    id: 1,
   title: "Hamburguesa Fiesta",
   description: "Hamburguesa con queso chedar, tomate y lechuga",
   price: "400",
-  pictureUrl: "https://i.imgur.com/YZBB5R0.jpg"
+  pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
+  stock: 10,
+  category: 1
   },
   { 
-    id: 123457,
+    id: 2,
   title: "Hamburguesa Completa",
   description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
   price: "400",
-  pictureUrl: "https://i.imgur.com/YZBB5R0.jpg"
+  pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
+  sotck: 15,
+  category: 2
   },
   { 
-    id: 1234568,
+    id: 3,
   title: "Hamburguesa Para el Bajón",
   description: "Doble Hamburguesa con queso chedar, panceta y barbacóa",
   price: "400",
-  pictureUrl: "https://i.imgur.com/YZBB5R0.jpg"
+  pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
+  stock: 8,
+  category: 1
   }
 ]
 
-const ItemListContainer = ({ initial, stock }) => {
-  const [count, setCount] = useState(initial);
-
-  const add = () => {
-    if (count > stock) {
-      alert("Ooops! Lamentablemente solo tenemos " + stock + " en stock.");
-    } else {
-      setCount(count + 1);
-    }
-  };
-
-  const sub = () => {
-    if (count <= stock && count > 1) {
-      setCount(count - 1);
-    } else if (count > stock) {
-      setCount(count - 1);
-    }
-  };
-
-  const [products, setProducts] = useState();
+export const ItemListContainer = () => {
+  const [items, setItems] = useState([]);
 
   useEffect(()=> {
     const call = new Promise((resolve,reject) => {
       setTimeout(() => {
-        resolve(items)
+        resolve(products)
       },2000) 
     })
   
     call.then( response => {
         console.log(response)
-        setProducts(response)
+        setItems(response)
     })
 
   },[])
@@ -66,12 +53,8 @@ const ItemListContainer = ({ initial, stock }) => {
   return (
     <>
     <div className="container">
-      {products?.map}
-      <ItemCount initial={sub} stock={add} onAdd="" count={count} />
-      <ItemList items = {products}/>
+      <ItemList items = {items}/>
       </div>
     </>
   );
 };
-
-export default ItemListContainer
