@@ -13,7 +13,6 @@ function Item  ({item})  {
             </Link> 
             <div className='descripcion'>{item.description}</div>
             <br></br>
-            <ItemCountContainer initial={1} stock={5}/>
         </div>
 
     )

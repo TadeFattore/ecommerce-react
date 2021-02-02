@@ -5,9 +5,7 @@ import './itemdetail.css'
 export default function ItemDetail({getItem, count}) {
 
     
-    function agregandoCarrito(){
-        console.log(`agregaste ${count} al carrito`)
-    }
+
 
 
     console.log(getItem)
@@ -23,7 +21,7 @@ export default function ItemDetail({getItem, count}) {
                     <div className='descripcion'>{getItem && getItem.description}</div>
                 </div>
             </div>
-            <ItemCountContainer initial={1} stock={5} count={count} agregando={agregandoCarrito}/>
+            <ItemCountContainer initial={1} stock={5}/>
         </div>
     )
 }   

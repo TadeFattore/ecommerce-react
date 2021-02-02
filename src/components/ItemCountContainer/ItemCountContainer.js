@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import CartCount from '../CartCount/CartCount';
 import ItemCount from "../ItemCount/ItemCount"
 
 
 
-export default function ItemCountContainer({ initial, stock, agregando }) {
+export default function ItemCountContainer({ initial, stock }) {
     
     const [count, setCount] = useState(initial);
+    const [cart, setCart] = useState([]);
 
   const add = () => {
     if (count > stock) {
@@ -24,11 +24,19 @@ export default function ItemCountContainer({ initial, stock, agregando }) {
     }
   };
 
+  function agregando(){
+    const newCart = cart + count;
+
+    setCart(newCart);
+    console.log(newCart)
+
+    
+}
+
 
     return (
         <div>
-            <ItemCount initial={sub} stock={add} onAdd="" count={count}/>
-            <CartCount count={count} agregarAlCarrito={agregando}/>
+            <ItemCount initial={sub} stock={add} onAdd={setCart} count={count} agregarAlCarrito={agregando}/>
         </div>
     )
 }
