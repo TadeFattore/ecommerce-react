@@ -3,7 +3,7 @@ import React from 'react'
 export default function CartContainer() {
     return (
         <div>
-            CARRITO FINAL
+            <h2>CARRITO</h2>
         </div>
     )
 }

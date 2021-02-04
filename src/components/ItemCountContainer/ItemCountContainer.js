@@ -1,42 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import ItemCount from "../ItemCount/ItemCount"
+import {CartContext} from '../../context/CartContext/CartContext'
 
 
 
-export default function ItemCountContainer({ initial, stock }) {
-    
-    const [count, setCount] = useState(initial);
-    const [cart, setCart] = useState([]);
+
+export default function ItemCountContainer({ initial, stock}) {
+  const [contador, setContador] = useContext(CartContext)
+  const [count, setCount] = useState(initial);
 
   const add = () => {
-    if (count > stock) {
+    if (contador > stock) {
       alert("Ooops! Lamentablemente solo tenemos " + stock + " en stock.");
     } else {
-      setCount(count + 1);
+      setContador(contador + 1);
     }
   };
 
   const sub = () => {
-    if (count <= stock && count > 1) {
-      setCount(count - 1);
-    } else if (count > stock) {
-      setCount(count - 1);
+    if (contador <= stock && contador > 1) {
+      setContador(contador - 1);
+    } else if (contador > stock) {
+      setContador(contador - 1);
     }
   };
 
-  function agregando(){
-    const newCart = cart + count;
-
-    setCart(newCart);
-    console.log(newCart)
-
-    
-}
-
-
     return (
         <div>
-            <ItemCount initial={sub} stock={add} onAdd={setCart} count={count} agregarAlCarrito={agregando}/>
+            <ItemCount initial={sub} stock={add} onAdd='' count={contador}/>
         </div>
     )
 }

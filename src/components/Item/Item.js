@@ -7,14 +7,18 @@ import './item.css'
 function Item  ({item})  {
 
     return (
-        <div className='item'>
-            <Link to={`/item/${item.id}`}>
-                <div className="titulo"><a href='#'>{item.title}</a></div>
-            </Link> 
-            <div className='descripcion'>{item.description}</div>
+        <>
+            <div className='item'>
+                <Link to={`/item/${item.id}`}>
+                    <div className="titulo"><a href='#'>{item.title}</a></div>
+                </Link> 
+                <div className='descripcion'>{item.description}</div>
+                <div>${item.price}</div>
+                
+            </div>
             <br></br>
-        </div>
-
+            <br></br>
+        </>
     )
 }
 

@@ -1,15 +1,14 @@
 .titulo{
     color: black;
-    border: solid black;  
 }
 
 .descripcion{
-    background-color: black;
-    color:  rgb(255, 0, 191);
+    color:  white(255, 0, 191);
+    background-color: rgb(76, 74, 180);
 }
 
 .item{
     display: inline-block;
-    border: black solid;
-
+    border: rgb(76, 74, 180) solid;
+    margin-left: 10px;
 }

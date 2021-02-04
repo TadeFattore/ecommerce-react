@@ -1,5 +1,5 @@
 .containerNav{
-    background-color: rgb(255, 0, 191);
+    background-color: rgb(76, 74, 180);
     display: flex;
     justify-content: center;
 }
@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 0.5rem;
 }
 p{
     color: white;
@@ -31,4 +32,8 @@ p{
 p a{
     text-decoration: none;
     color: white;
+}
+
+.contador-carrito{
+    margin-right: 3rem;
 }

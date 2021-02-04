@@ -1,5 +1,6 @@
 import React from 'react'
 import Item from '../Item/Item'
+import './itemlist.css'
 
 export const ItemList = ({items}) => {
 
@@ -7,12 +8,12 @@ export const ItemList = ({items}) => {
     
     return (
         <>
-        <div>
-            PRODUCTOS
+        <div className='tit-productos'>
+            <h2>PRODUCTOS</h2>
         </div>
-        <ul>
-        {items && items.map(item => <Item key={item.id} item={item}/>)}
-        </ul>
+        <div className="lista-productos">
+        {items && items.map(item => <Item className='veremos' key={item.id} item={item}/>)}
+        </div>
         </>
 
     )
