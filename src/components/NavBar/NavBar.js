@@ -6,30 +6,32 @@ import {CartContext} from '../../context/CartContext/CartContext'
 
 
 export const NavBar = () => {
-    const [contador] = useContext(CartContext)
+    const {cart} = useContext(CartContext);
 
 
     return (
         <div className='containerNav'>
             <div className='logo'>
                 <Link to={'/'}>
-                    E-Commerce
+                    Cervecería
                 </Link>
             </div>
             <div className='nav'>
-                <Link to={'/'}>
-                    <p><a href="#">INICIO</a></p>
+                <Link to={'/category/Rubias'}>
+                    <p className="categorias-navbar">RUBIAS</p>
                 </Link>
-                <Link to={`/category/1`}>
-                    <p><a href="#"> CATEGORIA 1</a></p>
+                <Link to={`/category/Rojas`}>
+                    <p className="categorias-navbar">ROJAS</p>
                 </Link>
-                <Link to={`/category/2`}>
-                    <p><a href="#"> CATEGORIA 2</a></p>
+                <Link to={`/category/Negras`}>
+                    <p className="categorias-navbar">NEGRAS</p>
                 </Link>
             </div>
             <div className='carrito'>
                 <CartWidget/> 
-                <div className='contador-carrito'>{contador}</div>
+                <div className='contador-carrito'>
+                    {cart.length}
+                    </div>
             </div>
         </div>
     )

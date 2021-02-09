@@ -8,7 +8,7 @@ const CartWidget = () => {
     return(
         <div className="logo">
             <Link to="/cart">
-                <a href='#'><img src={LogoCart} alt="imgCart" /></a>
+                <img src={LogoCart} alt="imgCart" />
             </Link>
         </div>
     )

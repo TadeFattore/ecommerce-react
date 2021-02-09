@@ -1,16 +1,15 @@
 import React, {useState, useContext} from 'react'
+import { CartContext } from '../../context/CartContext/CartContext';
 import ItemCount from "../ItemCount/ItemCount"
-import {CartContext} from '../../context/CartContext/CartContext'
-
 
 
 
 export default function ItemCountContainer({ initial, stock}) {
-  const [contador, setContador] = useContext(CartContext)
-  const [count, setCount] = useState(initial);
+  // const [count, setCount] = useState(initial);
+  const {contador, setContador} = useContext(CartContext);
 
   const add = () => {
-    if (contador > stock) {
+    if (contador >= stock) {
       alert("Ooops! Lamentablemente solo tenemos " + stock + " en stock.");
     } else {
       setContador(contador + 1);

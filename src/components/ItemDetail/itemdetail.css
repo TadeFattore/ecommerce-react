@@ -5,6 +5,11 @@
     height: 10em;
     justify-content: center;
 }
-.fotoBurga{
+.fotoCerveza{
     height: 23rem;
+}
+
+.precio{
+    background-color: rgb(76, 74, 180);
+    
 }

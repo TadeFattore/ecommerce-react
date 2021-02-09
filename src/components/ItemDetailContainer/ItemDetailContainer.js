@@ -1,109 +1,8 @@
   import React, { useState, useEffect }  from "react"
   import { useParams } from "react-router-dom";
   import  ItemDetail from '../ItemDetail/ItemDetail'
+  import cervezas from '../../assets/BaseDeDatos/productos'
   import './itemdetailcontainer.css'
-
-  const itemList = [
-    { 
-      id: 1,
-    title: "Hamburguesa Fiesta",
-    description: "Hamburguesa con queso chedar, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    stock: 10,
-    category: 1
-    },
-    { 
-      id: 2,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 3,
-    title: "Hamburguesa Para el Bajón",
-    description: "Doble Hamburguesa con queso chedar, panceta y barbacóa",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    stock: 8,
-    category: 1
-    },
-    { 
-      id: 4,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 5,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 6,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 7,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 8,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 9,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 10,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    },
-    { 
-      id: 11,
-    title: "Hamburguesa Completa",
-    description: "Hamburguesa con queso chedar, huevo, jamón, tomate y lechuga",
-    price: "400",
-    pictureUrl: "https://i.imgur.com/YZBB5R0.jpg",
-    sotck: 15,
-    category: 2
-    }
-  ]
 
   export const ItemDetailContainer = () => {
     const [item, setItem] = useState([]);
@@ -113,7 +12,7 @@
 
       const call = new Promise((resolve,reject) => {
         setTimeout(() => {
-          resolve(itemList)
+          resolve(cervezas)
         },2000) 
       })
     
@@ -122,7 +21,7 @@
           setItem(response[itemId - 1])
       })
 
-    },[])
+    },[itemId])
 
 
     return (

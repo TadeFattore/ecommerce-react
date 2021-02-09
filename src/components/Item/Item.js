@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import ItemCountContainer from '../ItemCountContainer/ItemCountContainer'
 import './item.css'
 
 
@@ -10,11 +9,10 @@ function Item  ({item})  {
         <>
             <div className='item'>
                 <Link to={`/item/${item.id}`}>
-                    <div className="titulo"><a href='#'>{item.title}</a></div>
-                </Link> 
-                <div className='descripcion'>{item.description}</div>
+                <img className="cervezas" src={item.pictureUrl} alt='foto-item'></img>
+                <div className="descripcion">{item.title}</div>
                 <div>${item.price}</div>
-                
+                </Link> 
             </div>
             <br></br>
             <br></br>
