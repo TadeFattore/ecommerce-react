@@ -1,30 +1,42 @@
   import React, { useState, useEffect }  from "react"
   import { useParams } from "react-router-dom";
+  import {getFirestore} from '../../firebase/index'
   import  ItemDetail from '../ItemDetail/ItemDetail'
-  import cervezas from '../../assets/BaseDeDatos/productos'
+  import  LoaderGif  from '../LoaderGif/LoaderGif'
   import './itemdetailcontainer.css'
 
   export const ItemDetailContainer = () => {
+    const[loading, setLoading] = useState('');
     const [item, setItem] = useState([]);
     const {itemId} = useParams();
 
-    useEffect(()=> {
+    useEffect(() => {
+      let db = getFirestore();
+      let itemsDb = db.collection("items")
+      let product = itemsDb.doc(itemId)
+      setLoading(true)
+      product.get()
+        .then((doc)=>{
+          if(!doc.exists){
+            console.log('El item no existe!')
+            return;
+          }
+          console.log('Encontramos el item')
+          setItem({id: doc.id, ...doc.data()});
+        })
+        .catch((error)=>{
+          console.log('Hay un error: ', error)
+        })
+        .finally(()=>{
+        setLoading(false)
 
-      const call = new Promise((resolve,reject) => {
-        setTimeout(() => {
-          resolve(cervezas)
-        },2000) 
-      })
-    
-      call.then( response=> {
-          console.log(response)
-          setItem(response[itemId - 1])
-      })
-
-    },[itemId])
+        })
+        
+    }, [itemId])
 
 
     return (
+      loading ? <LoaderGif /> :
         <>
              <ItemDetail getItem={item} />
         </>

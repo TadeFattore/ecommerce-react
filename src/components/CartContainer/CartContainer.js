@@ -7,6 +7,7 @@ export default function CartContainer() {
     const {cart, removeItem} = useContext(CartContext)
     const [precioTotal, setPrecioTotal] = useState(0);
     const [itemList, setItemList] = useState([]);
+    const [order, setOrder] = useState({});
 
     const getItems = new Promise((res, err) => {
         setTimeout(()=>{
