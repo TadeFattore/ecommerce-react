@@ -1,13 +1,17 @@
 import React, {useState, useContext, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import firebase from 'firebase/app'
 import {CartContext} from '../../context/CartContext/CartContext'
+import {getFirestore} from '../../firebase/index'
 
 export default function CartContainer() {
 
     const {cart, removeItem} = useContext(CartContext)
     const [precioTotal, setPrecioTotal] = useState(0);
     const [itemList, setItemList] = useState([]);
-    const [order, setOrder] = useState({});
+    const [order, setOrder] = useState({});   
+    const [orderId, setOrderId] = useState({});   
+
 
     const getItems = new Promise((res, err) => {
         setTimeout(()=>{
@@ -31,6 +35,33 @@ export default function CartContainer() {
            price = price + (e.item.price * e.quantity);
         });
         setPrecioTotal(price)
+    }
+
+    useEffect(() => {
+        setOrder({
+            buyer: 'Nombre',
+            items: cart,
+            date: firebase.firestore.Timestamp.fromDate(new Date ()),
+            total: precioTotal
+        }) 
+        
+    }, [precioTotal])
+
+    const handleCompra =()=>{
+        const db = getFirestore()
+        const orderDb = db.collection('orders')
+        orderDb.add(order)
+            .then(({id})=>{
+                setOrderId(id)
+
+            })
+            .catch((err)=>{
+                console.log('ocurrio un error: ',err)
+            })
+            .finally(()=>{
+                console.log('Terminamos')
+            })
+
     }
 
 
@@ -134,9 +165,10 @@ export default function CartContainer() {
                     </div>
                     <div>Importe total de la compra: $</div>
                     <div><button>Vaciar Carrito</button></div>
-                    </>
+                    <div><button onClick={handleCompra}>Finalizar compra</button></div>
+                    
+                    </> 
                 ))}
-                
             
         </>
     )

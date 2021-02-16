@@ -6,7 +6,7 @@ import  LoaderGif  from '../LoaderGif/LoaderGif'
 import './itemlistcontainer.css'
 
 export const ItemListContainer = () => {
-  const [loading, setLoading] = useState('');
+  const[loading, setLoading] = useState('')
   const [items, setItems] = useState([]);
   const {categoryName} = useParams();
 

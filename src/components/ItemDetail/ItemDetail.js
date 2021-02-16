@@ -36,7 +36,7 @@ export default function ItemDetail({getItem}) {
             {visibilidadCompra ? 
             <>
                 <Link to={'/cart'}>
-                    <button>Terminar mi compra</button>
+                    <button>Ir al carrito</button>
                 </Link>
                 <Link to={'/'}>
                     <button>Seguir comprando</button>

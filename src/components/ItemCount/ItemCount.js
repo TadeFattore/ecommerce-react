@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import './itemcount.css'
 
 const ItemCount = ({ initial, stock, count}) => {

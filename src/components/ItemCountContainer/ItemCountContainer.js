@@ -1,11 +1,10 @@
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import { CartContext } from '../../context/CartContext/CartContext';
 import ItemCount from "../ItemCount/ItemCount"
 
 
 
 export default function ItemCountContainer({ initial, stock}) {
-  // const [count, setCount] = useState(initial);
   const {contador, setContador} = useContext(CartContext);
 
   const add = () => {
