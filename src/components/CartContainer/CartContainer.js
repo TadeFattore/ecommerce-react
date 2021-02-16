@@ -39,10 +39,8 @@ export default function CartContainer() {
 
     useEffect(() => {
         setOrder({
-            buyer: 'Nombre',
-            items: cart,
-            date: firebase.firestore.Timestamp.fromDate(new Date ()),
-            total: precioTotal
+            buyer: {name: 'Nombre', phone: '', email: ''},
+            items:[{id, title, price, quantity}], date: firebase.firestore.Timestamp.fromDate(new Date ()), precioTotal
         }) 
         
     }, [precioTotal])
