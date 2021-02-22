@@ -4,8 +4,9 @@ export const CartContext = React.createContext([])
     
 export const Context = ({children}) =>{
 
-    const[cart,setCart] = useState([])
-    const [contador, setContador] = useState(0)
+    const [cart,setCart] = useState([])
+    const [contador, setContador] = useState(1)
+    const [contadorNav, setContadorNav] = useState(0)
 
 
     const agregarItem = (item, cantidad)=> {
@@ -28,35 +29,21 @@ export const Context = ({children}) =>{
     }
 
 
-    //   const addItem = (item, quantity) => {
-    //     let itemExiste = cartList.some( i => i.item.id === item.id  );
-        
-    //     if(!itemExiste){
-    //         setCartList([...cartList, {item, quantity}])
-    //     }else{
-    //         let items = cartList.map(producto => {
-    //             if (producto.item === item) {
-    //                 producto.quantity = producto.quantity + quantity;
-    //                 return producto;
-    //               } else {
-    //                 return producto; // retorna los objetos que no son los duplicados
-    //             }
-    //         }); 
-    //         setCartList(items);
-    //     }       
-    // }
-
-
     const clear = () => {
-        // cart.length > 0 
-        // ? setCart([])
-        // : alert('El carrito ya está vacío');
+         setCart([]);
+         setContadorNav(0);    
     }
 
-    const removeItem = (itemId) => {
-        cart.forEach( (e, i) => {
-            e.id === itemId && setCart(cart.splice(1, i));
+    const removeItem = (itemToDelet) => {
+
+        cart.forEach( (e, i, arr) => {
+            if(e.item.id === itemToDelet.id){
+                cart.splice(i, 1);
+                setContadorNav(contadorNav - e.cantidad);
+                setCart(arr);
+            }
         })
+        console.log(cart)
     }
 
     useEffect(() => {
@@ -67,7 +54,7 @@ export const Context = ({children}) =>{
 
 
     return(
-        <CartContext.Provider value={{cart, setCart, removeItem, contador, setContador, clear, agregarItem}}>
+        <CartContext.Provider value={{cart, setCart, removeItem, contador, setContador, contadorNav, setContadorNav, clear, agregarItem}}>
             {children}
         </CartContext.Provider>
     )

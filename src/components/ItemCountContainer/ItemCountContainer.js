@@ -4,7 +4,7 @@ import ItemCount from "../ItemCount/ItemCount"
 
 
 
-export default function ItemCountContainer({ initial, stock}) {
+export default function ItemCountContainer({stock}) {
   const {contador, setContador} = useContext(CartContext);
 
   const add = () => {

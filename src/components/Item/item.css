@@ -8,9 +8,12 @@
 }
 
 .item{
-    border: rgb(76, 74, 180) solid;
     margin: 10px 10px 10px 10px;
     padding: 5px 5px 5px 5px;
+    transition: transform .2s;
+}
+.item:hover{
+    transform: scale(1.1);
 }
 .cervezas{
     height: 10em;

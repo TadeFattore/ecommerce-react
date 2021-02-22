@@ -6,7 +6,7 @@ import {CartContext} from '../../context/CartContext/CartContext'
 
 
 export const NavBar = () => {
-    const {cart} = useContext(CartContext);
+    const {contadorNav} = useContext(CartContext);
 
 
     return (
@@ -30,7 +30,7 @@ export const NavBar = () => {
             <div className='carrito'>
                 <CartWidget/> 
                 <div className='contador-carrito'>
-                    {cart.length}
+                    {contadorNav}
                     </div>
             </div>
         </div>

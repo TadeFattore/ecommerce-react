@@ -5,17 +5,23 @@ import {CartContext} from '../../context/CartContext/CartContext'
 import './itemdetail.css'
 
 export default function ItemDetail({getItem}) {
-    const {contador, setContador,cart, setCart,agregarItem} = useContext(CartContext)
+    const {contador, setContador,cart,agregarItem, contadorNav, setContadorNav} = useContext(CartContext)
+    const [ocultarContador, setOcultarContador] = useState(true)
     const [visibilidadCompra, setVisibilidadCompra] = useState(false)
     const [ocultarCompra, setOcultarCompra] = useState(true)
 
     function onAdd(getItem, contador) {  
         setVisibilidadCompra(true)
+        setOcultarContador(false)
         setOcultarCompra(false)
         agregarItem(getItem, contador)
+        setContadorNav(contadorNav + contador)
+        setContador(1);
         console.log(cart)
     }
-    
+
+    console.log(contador)
+
 
     return (
         <>
@@ -31,7 +37,7 @@ export default function ItemDetail({getItem}) {
                     <div className='descripcionando'>{getItem && getItem.description}</div>
                 </div>
             </div>
-            <ItemCountContainer initial={1} stock={getItem && getItem.stock} />
+            { ocultarContador ? <ItemCountContainer initial={1} stock={getItem && getItem.stock} />    : null}
             {ocultarCompra ? <button onClick={()=>{onAdd(getItem, contador)}}>Agregar {contador} al carrito!</button> : null}
             {visibilidadCompra ? 
             <>
@@ -43,6 +49,8 @@ export default function ItemDetail({getItem}) {
                 </Link> 
             </>
                         : null }
+                    <div className="stock">Solo quedan {getItem && getItem.stock} en stock!</div>
+                        
         </div>
         </>
     )

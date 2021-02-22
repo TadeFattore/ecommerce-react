@@ -3,14 +3,19 @@ import {Link} from 'react-router-dom'
 import firebase from 'firebase/app'
 import {CartContext} from '../../context/CartContext/CartContext'
 import {getFirestore} from '../../firebase/index'
+import  LoaderGif  from '../LoaderGif/LoaderGif'
+import './cartcontainer.css'
+
 
 export default function CartContainer() {
 
-    const {cart, removeItem} = useContext(CartContext)
+    const [loading, setLoading] = useState(true)
+    const {cart, removeItem,clear} = useContext(CartContext)
     const [precioTotal, setPrecioTotal] = useState(0);
     const [itemList, setItemList] = useState([]);
     const [order, setOrder] = useState({});   
-    const [orderId, setOrderId] = useState({});   
+    const [orderId, setOrderId] = useState({});  
+    const [nombreUsuario, setNombreUsuario] = useState()
 
 
     const getItems = new Promise((res, err) => {
@@ -24,34 +29,40 @@ export default function CartContainer() {
             setItemList(cart)
         }).catch(error => console.error(error))
         .finally(()=>{
-            // setLoading(false);
-            calcPrice();
+            setLoading(false);
         });
     },[itemList]);
 
+    useEffect(() => {
+        calcPrice()
+        
+    }, [cart])
+
     function calcPrice () {
-        let price = precioTotal;
+        let price = 0;
         cart.forEach(e => {
-           price = price + (e.item.price * e.quantity);
+           price = price + (e.item.price * e.cantidad);
         });
-        setPrecioTotal(price)
+        console.log(price)
+        setPrecioTotal(price.toFixed(2))
     }
 
     useEffect(() => {
         setOrder({
-            buyer: {name: 'Nombre', phone: '', email: ''},
-            items:[{id, title, price, quantity}], date: firebase.firestore.Timestamp.fromDate(new Date ()), precioTotal
+            buyer: {name: 'nombre', phone: 'teléfono', email: 'emaail@email.com'},
+            items: cart , date: firebase.firestore.Timestamp.fromDate(new Date ()), precioTotal
         }) 
         
-    }, [precioTotal])
+    }, [precioTotal,cart])
+
 
     const handleCompra =()=>{
+        setNombreUsuario(nombreUsuario)
         const db = getFirestore()
         const orderDb = db.collection('orders')
         orderDb.add(order)
             .then(({id})=>{
                 setOrderId(id)
-
             })
             .catch((err)=>{
                 console.log('ocurrio un error: ',err)
@@ -63,62 +74,17 @@ export default function CartContainer() {
     }
 
 
-    // const resumenCompra = () =>{
-    //     const productosSeleccionados = cart.map((producto, i) => {
-            
-    //         return(
-    //             <tr key={producto.id}>
-    //                 <td>{i+1}</td>
-    //                 <td>{producto.title}</td>
-    //                 <td>{producto.cantidad}</td>
-    //                 <td>$ {producto.price}</td>
-    //                 <td>$ {producto.price * producto.cantidad}</td>
-    //                 <td onClick={()=>removeItem(producto.id)}>X</td>
-    //             </tr>
-    //         )
-    //     })
-
-    //     const total = cart.reduce((acc,curr) => {
-    //         return( 
-    //             acc += curr.cantidad * curr.precio
-    //         )
-    //     },0)
-
-    //     const cantidadTotal = cart.reduce((acc,curr)=>{
-    //         return(
-    //             acc += curr.cantidad
-    //         )
-    //     },0)
-
-    //     const totales =()=>{
-    //         return(
-    //             <tr>
-    //                 <td></td>
-    //                 <td><b>TOTAL</b></td>
-    //                 <td>{cantidadTotal}</td>
-    //                 <td></td>
-    //                 <td>$ {total}</td>
-    //                 <td></td>
-    //             </tr>
-    //         )
-    //     }
-
-    //     return(
-    //         [...productosSeleccionados, totales()]
-    //     )
-    // }
-
     const carritoVacio =() =>{
 
         return(
-            <>
+            <div className="carrito-vacio">
                 <div> 
                     No ha agregado ninún producto a su carrito
                 </div>
                 <div> 
                     <Link to={'/'}><button>Volver al Home</button></Link>
                 </div>
-            </>
+            </div>
         )
     }
 
@@ -128,26 +94,7 @@ export default function CartContainer() {
 
 
     return (
-        // <div>
-        //     <h2>CARRITO</h2>
-        //     <div>
-        //         <table>
-        //             <thead>
-        //                 <tr>
-        //                     <th>#</th>
-        //                     <th>Producto</th>
-        //                     <th>Cantidad</th>
-        //                     <th>Precio Unitario</th>
-        //                     <th>Total</th>
-        //                     <th>Eliminar Producto</th>
-        //                 </tr>
-        //             </thead>
-        //             <tbody>
-        //                 {cart.length === 0 ? carritoVacio() : resumenCompra()}
-        //             </tbody>
-        //         </table>
-        //     </div>
-        // </div>
+        loading ? <LoaderGif /> :
         <>
             {   cart.length === 0 ? carritoVacio() :
                 cart && cart.map( (e,i) => (
@@ -156,18 +103,42 @@ export default function CartContainer() {
                         <div>{e.item.title}</div>
                         <img src={e.item.pictureUrl} alt=''  style={{width: "100px"}} />
                         <div>{`$ ${e.item.price}`}</div>
-                        <div style={{color: "red"}}>{`Cantidad ${ e.quantity }`}</div>
+                        <div style={{color: "Green"}}>{`Cantidad: ${ e.cantidad }`}</div>
                         <div item={e.item}/>
-                        <button>Eliminar item</button>
+                        <button onClick={()=>{removeItem(e.item);calcPrice()}}>Eliminar item</button>
                         {}
                     </div>
-                    <div>Importe total de la compra: $</div>
-                    <div><button>Vaciar Carrito</button></div>
-                    <div><button onClick={handleCompra}>Finalizar compra</button></div>
+                    
                     
                     </> 
                 ))}
-            
+                
+                {cart.length === 0 ? null :<>
+                    <br/>
+                    <div>Importe total de la compra: $ {precioTotal}</div>
+                    <br/>
+                    <div>
+                        <button onClick={clear}>Vaciar Carrito</button>
+                            <form>
+                                <label>
+                                    Nombre:
+                                    <input type="text" value={nombreUsuario}/>
+                                </label>
+                                <br/>
+                                <label>
+                                    Teléfono:
+                                    <input type="number" name="phone" />
+                                </label>
+                                <br/>
+                                <label>
+                                    Email:
+                                    <input type="text" name="Mail" />
+                                </label>
+                                <br/>
+                                <button onClick={handleCompra}>Finalizar compra</button>
+                            </form>
+                    </div>
+                    </>}
         </>
     )
 }

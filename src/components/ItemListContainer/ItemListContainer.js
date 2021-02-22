@@ -6,7 +6,7 @@ import  LoaderGif  from '../LoaderGif/LoaderGif'
 import './itemlistcontainer.css'
 
 export const ItemListContainer = () => {
-  const[loading, setLoading] = useState('')
+  const[loading, setLoading] = useState(true)
   const [items, setItems] = useState([]);
   const {categoryName} = useParams();
 
@@ -15,18 +15,18 @@ export const ItemListContainer = () => {
   useEffect(() => {
 
   const db = getFirestore();
-  const itemsDb = db.collection('items');
+  const itemsDb = db.collection('items')
+  const itemsLimit = itemsDb.limit(12)
   const rubias = itemsDb.where('category','==','Rubias');
   const negras = itemsDb.where('category','==','Negras');
   const rojas = itemsDb.where('category','==','Rojas');
     
     !categoryName &&
-      setLoading(true)
-        itemsDb.get()
+      itemsLimit.get()
           .then((query)=>{
             query.size === 0 && console.log('No hay Items para mostrar')
-            setItems(query.docs.map(item =>{
-              return({id:item.id, ...item.data()})
+            setItems(query.docs.map(objeto =>{
+              return({id:objeto.id, ...objeto.data()})
             }))
           })
           .catch((err)=>{
@@ -79,51 +79,6 @@ export const ItemListContainer = () => {
           )
 
   }, [categoryName])
-
-  // useEffect(() => {
-  //   let db = getFirestore();
-  //   let itemsDb = db.collection("items")
-  //   itemsDb.get()
-  //     .then((querySnapshot)=>{
-  //       querySnapshot.size === 0 && console.log('No hay items')
-  //       let arrayItems = querySnapshot.docs.map((doc)=>{
-  //         return({
-  //           id: doc.id,
-  //           ...doc.data()
-  //         })  
-  //       })
-  //       console.log('arrayItems',arrayItems)
-  //       setItems(arrayItems)
-
-  //     })
-  //     .catch((error)=>{
-  //       console.log('occurrio un error: ', error);
-  //     })
-      
-  // }, [])
-
-  // useEffect(()=>{
-  //   console.log(categoryName)
-
-  // },[categoryName])
-
-  // useEffect(()=> {
-  //   const call = new Promise((resolve,reject) => {
-  //     setTimeout(() => {
-  //       resolve(cervezas)
-  //     },2000) 
-  //   })
-  
-  //   call.then( response => {
-  //       console.log(response)
-  //       if(categoryName === undefined){
-  //       setItems(response)} else {
-  //         const cervezasFiltradas = response.filter(cerveza=> cerveza.category===categoryName)
-  //         setItems(cervezasFiltradas)
-  //       }
-  //   })
-
-  // },[categoryName])
 
 
   return (

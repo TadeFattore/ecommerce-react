@@ -3,7 +3,6 @@
   import {getFirestore} from '../../firebase/index'
   import  ItemDetail from '../ItemDetail/ItemDetail'
   import  LoaderGif  from '../LoaderGif/LoaderGif'
-  import './itemdetailcontainer.css'
 
   export const ItemDetailContainer = () => {
     const[loading, setLoading] = useState('');

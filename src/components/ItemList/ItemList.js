@@ -9,7 +9,7 @@ export const ItemList = ({items}) => {
     return (
         <>
         <div className='tit-productos'>
-            <h2>PRODUCTOS</h2>
+            <h2>CERVEZAS</h2>
         </div>
         <div className="lista-productos">
         {items && items.map(item => <Item className='veremos' key={item.id} item={item}/>)}
