@@ -1,3 +1,32 @@
 .carrito-vacio{
     margin:  10em 10em 10em 10em;
 }
+
+.formulario{
+    background-color: rgb(76, 74, 180);
+    color: white;
+}
+.precio-total{
+    color: rgb(76, 74, 180);
+}
+
+.boton{
+    color: black;
+    background-color: rgb(76, 74, 180);
+    border: rgb(76, 74, 180);
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.item-carrito{
+    margin: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 5px;
+}
+
+.boton-finalizar{
+    color: black;
+    background-color: white;
+    border: solid black;
+    border-radius: 12px;
+    padding: 5px;
+}

@@ -38,14 +38,14 @@ export default function ItemDetail({getItem}) {
                 </div>
             </div>
             { ocultarContador ? <ItemCountContainer initial={1} stock={getItem && getItem.stock} />    : null}
-            {ocultarCompra ? <button onClick={()=>{onAdd(getItem, contador)}}>Agregar {contador} al carrito!</button> : null}
+            {ocultarCompra ? <button className="boton" onClick={()=>{onAdd(getItem, contador)}}>Agregar {contador} al carrito!</button> : null}
             {visibilidadCompra ? 
             <>
                 <Link to={'/cart'}>
-                    <button>Ir al carrito</button>
+                    <button className="boton">Ir al carrito</button>
                 </Link>
                 <Link to={'/'}>
-                    <button>Seguir comprando</button>
+                    <button className="boton">Seguir comprando</button>
                 </Link> 
             </>
                         : null }
