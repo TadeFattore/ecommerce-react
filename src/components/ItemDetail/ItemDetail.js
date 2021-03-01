@@ -5,7 +5,7 @@ import {CartContext} from '../../context/CartContext/CartContext'
 import './itemdetail.css'
 
 export default function ItemDetail({getItem}) {
-    const {contador, setContador,cart,agregarItem, contadorNav, setContadorNav} = useContext(CartContext)
+    const {contador, setContador,agregarItem, contadorNav, setContadorNav} = useContext(CartContext)
     const [ocultarContador, setOcultarContador] = useState(true)
     const [visibilidadCompra, setVisibilidadCompra] = useState(false)
     const [ocultarCompra, setOcultarCompra] = useState(true)
@@ -17,10 +17,8 @@ export default function ItemDetail({getItem}) {
         agregarItem(getItem, contador)
         setContadorNav(contadorNav + contador)
         setContador(1);
-        console.log(cart)
     }
 
-    console.log(contador)
 
 
     return (

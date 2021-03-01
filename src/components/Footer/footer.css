@@ -1,7 +1,8 @@
 .footer{
     height: 8rem;
     display: flex;
-    background-color: rgb(77, 76, 76);
+    background-color: rgb(116, 113, 113);
+    color: white;
     justify-content: center;
     align-items: flex-end;
     font-style: oblique;

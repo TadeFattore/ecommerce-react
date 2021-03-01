@@ -17,10 +17,8 @@
       product.get()
         .then((doc)=>{
           if(!doc.exists){
-            console.log('El item no existe!')
             return;
           }
-          console.log('Encontramos el item')
           setItem({id: doc.id, ...doc.data()});
         })
         .catch((error)=>{

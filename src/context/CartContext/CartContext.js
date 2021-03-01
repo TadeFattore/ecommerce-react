@@ -24,7 +24,6 @@ export const Context = ({children}) =>{
                 }
             });
             setCart(items)
-            console.log(cart)
         }
     }
 
@@ -43,12 +42,9 @@ export const Context = ({children}) =>{
                 setCart(arr);
             }
         })
-        console.log(cart)
     }
 
     useEffect(() => {
-        console.log('cart',cart)
-        console.log(cart.length)
     }, [cart])
 
 

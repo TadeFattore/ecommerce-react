@@ -30,3 +30,26 @@
     border-radius: 12px;
     padding: 5px;
 }
+
+.order-id{
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.order-id-p{
+    border: solid;
+    border-radius: 15px;
+    padding: 1.5em;
+}
+
+.boton-return-home{
+    color: black;
+    background-color: white;
+    border: solid black;
+    border-radius: 12px;
+    padding: 5px;
+}

@@ -45,7 +45,6 @@ export const ItemListContainer = () => {
 
             })
             .finally(()=>{
-              console.log('Estas son las Rubias')
               setLoading(false);
             })
           )
@@ -59,7 +58,6 @@ export const ItemListContainer = () => {
 
             })
             .finally(()=>{
-              console.log('Estas son las Negras')
               setLoading(false);
             })
           )
@@ -73,7 +71,6 @@ export const ItemListContainer = () => {
 
             })
             .finally(()=>{
-              console.log('Estas son las Rojas')
               setLoading(false);
             })
           )

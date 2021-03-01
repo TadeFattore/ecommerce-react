@@ -14,7 +14,7 @@ export default function CartContainer() {
     const [precioTotal, setPrecioTotal] = useState(0);
     const [itemList, setItemList] = useState([]);
     const [order, setOrder] = useState({});   
-    const [orderId, setOrderId] = useState({});  
+    const [orderId, setOrderId] = useState();  
     const [datos, setDatos] = useState ({
         nombre: '',
         telefono: '',
@@ -48,17 +48,10 @@ export default function CartContainer() {
         cart.forEach(e => {
            price = price + (e.item.price * e.cantidad);
         });
-        console.log(price)
         setPrecioTotal(price.toFixed(2))
     }
 
-    useEffect(() => {
-        setOrder({
-            buyer: {nombre: datos.nombre, telefono: datos.telefono, mail: datos.mail},
-            items: cart , date: firebase.firestore.Timestamp.fromDate(new Date ()), precioTotal
-        }) 
-        
-    }, [precioTotal,cart])
+      
 
     const handleInputChange = (event) => {
 
@@ -70,7 +63,6 @@ export default function CartContainer() {
 
     const enviarDatos = (event) => {
         event.preventDefault()
-        console.log('enviando datos...' + datos.nombre + datos.telefono + datos.mail)
     }
 
 
@@ -86,8 +78,6 @@ export default function CartContainer() {
                 console.log('ocurrio un error: ',err)
             })
             .finally(()=>{
-                console.log('Terminamos')
-                alert('Tu id de compra es: ' + orderId)
             })
         }else{
             alert("Completa el formulario para continuar")
@@ -110,9 +100,19 @@ export default function CartContainer() {
         )
     }
 
+    const handleReturnHome =()=>{
+        clear()
+    }
 
 
 
+    useEffect(() => {
+        setOrder({
+            buyer: {nombre: datos.nombre, telefono: datos.telefono, mail: datos.mail},
+            items: cart , date: firebase.firestore.Timestamp.fromDate(new Date ()), precioTotal
+        }) 
+        
+    }, [precioTotal,cart,datos])
 
 
     return (
@@ -160,7 +160,16 @@ export default function CartContainer() {
                                     <input type="text" placeholder="Mail" className="form-control" title="E-Mail" onChange={handleInputChange} name="mail"></input>
                                 </label>
                                 <br/>
+                                { orderId &&
+                                    <><div className="order-id"> <p className="order-id-p">TU ID DE COMPRA ES: {orderId}
+                                    <br></br>
+                                    <Link to={'/'}>
+                                        <button className="boton-return-home" onClick={handleReturnHome} >Volver al comprar</button>
+                                    </Link>
+                                    </p> </div>
+                                    <div></div></>}
                                 <button className="boton-finalizar" type ="submit" onClick={handleCompra}>Finalizar compra</button>
+                                    
                             </form>
                     </div>
                     </>}
